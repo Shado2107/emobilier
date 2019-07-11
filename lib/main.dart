@@ -110,7 +110,7 @@ final IndexController controller = IndexController();
                       ),
                       position: info.position,
                       opacityFactor: .8,
-                      translationFactor: 400.0,
+                    translationFactor: 400.0,
                     ),
                     SizedBox(
                       height: 45.0,
