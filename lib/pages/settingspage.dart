@@ -12,6 +12,7 @@ class _SettingsPageState extends State<SettingsPage> {
        appBar: AppBar(
         title: new Text("Paramètres"),
       ),
+      
     );
   }
 }

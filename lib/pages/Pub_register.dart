@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-//import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 class PubRegisterPage extends StatefulWidget {
@@ -13,37 +13,7 @@ class _PubRegisterPageState extends State<PubRegisterPage> {
  
 TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
-/*Future<void> _optionsDialogBox(){
-  return showDialog(context: context, builder: (BuildContext context){
-    return AlertDialog(content: new SingleChildScrollView(child: new ListBody(
-      children: <Widget>[
-        GestureDetector(
-          child: new Text("select from galery "),
-          onTap: openGallery,
-        ),
-        Padding(padding: EdgeInsets.all(8.0),),
-         GestureDetector(
-          child: new Text("select from galery "),
-          onTap: openCamera,
-        ),
-      ],
-    ),),);
-  });
-}
-
-openCamera() async{
-var picture = await ImagePicker.pickImage(
-  source: ImageSource.camera,
-);
-}
-
-openGallery() async{
-var gallery = await ImagePicker.pickImage(
-  source: ImageSource.gallery,
-); 
-}*/
-
-
+File _imageFile;
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +121,28 @@ Widget _offsetPopup() => PopupMenuButton<int>(
       ),
     );
  
+/*
+final TOfImage = ListView(
+children: <Widget>[
+  ButtonBar(
+    children: <Widget>[
+      IconButton(
+        icon: Icon(Icons.photo_camera),
+        onPressed: () async => await _pickImageFromCamera(),
+        tooltip: 'shoot picture',
+      ),
+      IconButton(
+        icon: Icon(Icons.photo),
+        onPressed: () async => await _pickImageFromGallery(),
+        tooltip: 'pick from galllery',
+      )
+    ],
+  ),
+  this._imageFile == null ? Placeholder() :  Image.file(this._imageFile),
+],
 
+);
+*/
     return Scaffold(
      appBar: AppBar(
        title: new Text("Nouvelle publication"),
@@ -181,6 +172,7 @@ Widget _offsetPopup() => PopupMenuButton<int>(
                 SizedBox(height: 15.0),
                 DescriptionField,
                 SizedBox(height: 35.0,),
+           
                   Container(
                       child: Row(
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -202,4 +194,19 @@ Widget _offsetPopup() => PopupMenuButton<int>(
         ),
     );
   }
+
+Future<Null> _pickImageFromGallery() async {
+  final File imageFile =
+    await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(()=> this._imageFile = imageFile);
 }
+
+Future<Null> _pickImageFromCamera() async {
+  final File imageFile =
+    await ImagePicker.pickImage(source: ImageSource.camera);
+    setState(()=> this._imageFile = imageFile);
+}
+
+
+}
+

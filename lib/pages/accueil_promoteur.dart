@@ -71,6 +71,7 @@ Widget callPage(int currentIndex){
         ),
     body: callPage(_currentINdex),
     bottomNavigationBar: BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
       currentIndex: _currentINdex,
       onTap: (value){
         _currentINdex=value;
@@ -90,7 +91,8 @@ Widget callPage(int currentIndex){
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           title: Text('Mon compte')
-        ),       
+        ), 
+            
       ],
     ),
     
