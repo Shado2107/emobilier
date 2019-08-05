@@ -16,7 +16,9 @@ dependencies:
   image_picker: 
   flutter_mailer:
   sqflite:
-  path_provider:  
+  path_provider: 
+  intro_views_flutter:
+  flutter_swiper: 
 
  
   cupertino_icons: ^0.1.2
@@ -36,6 +38,17 @@ flutter:
 
   assets:
    - assets/images/salon.jpg
+   - assets/images/swipe-right.png
+   - assets/images/wallet1.png
+   - assets/images/wallet2.png
+   - assets/images/wallet3.png
+   - assets/images/logo.png
+   - assets/images/room1.jpg
+   - assets/images/room2.jpg
+   - assets/images/room3.jpg
+   - assets/images/room4.jpg
+
+  
 
   fonts:
     - family: Quicksand

@@ -45,7 +45,7 @@ CustomPopupMenu _selectedChoices = choices[0];
 int _currentINdex=0;
 Widget callPage(int currentIndex){
   switch(currentIndex){
-    case 0: return  AccueilPage ();
+    case 0: return AccueilPage ();
     case 1: return PlublicationPage();
     case 2: return ComptePage();
       break;
@@ -59,16 +59,7 @@ Widget callPage(int currentIndex){
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("E-Mobilier"),
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 20.0),
-            child: Icon(Icons.search),
-          ),
-         
-        ],  
-        ),
+   
     body: callPage(_currentINdex),
     bottomNavigationBar: BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
