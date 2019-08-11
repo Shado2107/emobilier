@@ -1,44 +1,22 @@
 class Utilisateurs {
-    int id;
-    String nom;
-    String prenom;
-    String telephone;
-    String adresse;
-    String email;
-    String profil;
-    
+  int _id;
+  String _email;
+  String _password;
 
-    Utilisateurs({
-        this.id,
-        this.nom,
-        this.prenom,
-        this.telephone,
-        this.adresse,
-        this.email,
-        this.profil,
-      
-    });
+  Utilisateurs(this._email, this._password);
 
-    factory Utilisateurs.fromJson(Map<String, dynamic> data) => Utilisateurs(
-        id: data["id"],
-        nom: data["nom"],
-        prenom: data["prenom"],
-        telephone: data["telephone"],
-        adresse: data["adresse"],
-        email: data["email"],
-        profil:  data["profil"],
-        
+  Utilisateurs.fromMap(dynamic obj) {
+    this._email = obj['email'];
+    this._password = obj['password'];
+  }
 
-    );
+  String get email => _email;
+  String get password => _password;
 
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "nom": nom,
-        "prenom": prenom,
-        "telephone": telephone,
-        "adresse": adresse,
-        "email": email,
-        "profil": profil,
-        
-    };
+  Map<String, dynamic> toMap() {
+    var map = new Map<String, dynamic>();
+    map["email"] = _email;
+    map["password"] = _password;
+    return map;
+  }
 }

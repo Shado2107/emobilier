@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   http:
+  #firebase: ^5.0.0
   transformer_page_view:
   unicorndial: "^1.1.5"
   image_picker: 

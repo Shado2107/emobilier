@@ -121,28 +121,38 @@ Widget _offsetPopup() => PopupMenuButton<int>(
       ),
     );
  
-/*
-final TOfImage = ListView(
-children: <Widget>[
-  ButtonBar(
-    children: <Widget>[
-      IconButton(
-        icon: Icon(Icons.photo_camera),
-        onPressed: () async => await _pickImageFromCamera(),
-        tooltip: 'shoot picture',
-      ),
-      IconButton(
-        icon: Icon(Icons.photo),
-        onPressed: () async => await _pickImageFromGallery(),
-        tooltip: 'pick from galllery',
-      )
-    ],
-  ),
-  this._imageFile == null ? Placeholder() :  Image.file(this._imageFile),
-],
 
-);
-*/
+// final TOfImage = ListView(
+// children: <Widget>[
+//   ButtonBar(
+//     children: <Widget>[
+//       IconButton(
+//         icon: Icon(Icons.photo_camera),
+//         onPressed: () async => await _pickImageFromCamera(),
+//         tooltip: 'shoot picture',
+//       ),
+//       IconButton(
+//         icon: Icon(Icons.photo),
+//         onPressed: () async => await _pickImageFromGallery(),
+//         tooltip: 'pick from galllery',
+//       )
+//     ],
+//   ),
+//   this._imageFile == null ? Placeholder() :  Image.file(this._imageFile),
+// ],
+
+// );
+
+
+// Widget showImage(){
+
+// return FutureBuilder<File>(
+//   future: ,
+// )
+// }
+
+
+
     return Scaffold(
      appBar: AppBar(
        title: new Text("Nouvelle publication"),
@@ -195,13 +205,13 @@ children: <Widget>[
     );
   }
 
-Future<Null> _pickImageFromGallery() async {
+Future<File> _pickImageFromGallery() async {
   final File imageFile =
     await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(()=> this._imageFile = imageFile);
 }
 
-Future<Null> _pickImageFromCamera() async {
+Future<File> _pickImageFromCamera() async {
   final File imageFile =
     await ImagePicker.pickImage(source: ImageSource.camera);
     setState(()=> this._imageFile = imageFile);

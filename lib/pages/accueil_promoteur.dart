@@ -1,12 +1,9 @@
-import 'dart:async';
-import 'dart:convert';
-
 
 import 'package:flutter/material.dart';
 import 'package:emobilier/models/page1.dart';
 import 'package:emobilier/models/page2.dart';
 import 'package:emobilier/models/page3.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:emobilier/utils/PopupMenu.dart';
 
 

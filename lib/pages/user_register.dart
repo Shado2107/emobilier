@@ -1,10 +1,22 @@
 
+import 'package:emobilier/database/Models/utilisateurs.dart';
+import 'package:emobilier/database/emobilierdb.dart';
 import 'package:emobilier/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignupPage extends StatelessWidget {
   static final String path = "";
+  String image;
+  String nom ;
+  String magasin;
+  String prix ;
+
+TextEditingController email = TextEditingController();
+TextEditingController password = TextEditingController();
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +53,10 @@ class SignupPage extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 32, vertical: 8.0),
               child: TextField(
+               
                 decoration: InputDecoration(
                     labelText: "Email", hasFloatingPlaceholder: true),
+                    controller: email,
               ),
             ),
             Padding(
@@ -52,6 +66,7 @@ class SignupPage extends StatelessWidget {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelText: "Mot de passe", hasFloatingPlaceholder: true),
+                    controller: password,
               ),
             ),
             Padding(
@@ -69,12 +84,12 @@ class SignupPage extends StatelessWidget {
               child: Text.rich(
                 TextSpan(children: [
                   TextSpan(
-                      text: "By clicking Sign Up you agree to the following "),
+                      text: "En vous inscrivant, vous acceptez "),
                   TextSpan(
-                      text: "Terms and Conditions",
+                      text: "les termes et les conditions",
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.indigo)),
-                  TextSpan(text: " withour reservations."),
+                  TextSpan(text: " d'utilisation de l'application."),
                 ]),
               ),
             ),
@@ -157,4 +172,39 @@ class SignupPage extends StatelessWidget {
       ),
     );
   }
+
+
+//  void ajouter ()
+//   {
+//     if(email != null)
+//       {
+//         Map<String, dynamic> map = { 'nom': nom , 'item': widget.id } ;
+//         if(magasin != null)
+//         {
+//           map['magasin'] = magasin;
+//         }
+//         if(prix != null)
+//         {
+//           map['prix'] = prix;
+//         }
+//         if(image != null)
+//         {
+//           map['image'] = image;
+//         }
+
+//        Utilisateurs article = new Utilisateurs() ;
+//         article.fromMap(map);
+//         DatabaseHelper().saveuser(article).then((value) {
+//           /**********on remet a null tous les donnees************/
+//            image = null;
+//            nom =  null;
+//            magasin = null;
+//            prix = null;
+//            Navigator.pop(context);
+//         }) ;
+//       }
+//   }
+
+
+
 }

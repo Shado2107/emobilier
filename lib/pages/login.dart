@@ -1,16 +1,48 @@
-import 'package:emobilier/pages/accueil_promoteur.dart';
-import 'package:emobilier/pages/user_register.dart';
+import 'package:emobilier/database/Models/utilisateurs.dart';
 import 'package:flutter/material.dart'; 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'; 
+import 'package:emobilier/services/response/Login_reponse.dart';
 
-class LoginPage extends StatelessWidget { 
+class LoginPage extends StatefulWidget   { 
     static final String path = ""; 
-    @override Widget build(BuildContext context) { 
 
-      
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> implements LoginCallBack {
+
+  BuildContext _ctx;
+  bool _isLoading = false;
+  final formKey = new GlobalKey<FormState>();
+ 
+  String _email, _password;
+
+  LoginResponse _response;
+
+  _LoginPageState() {
+    _response = new LoginResponse(this);
+  }
+
+  void _submit() {
+    final form = formKey.currentState;
+
+    if (form.validate()) {
+      setState(() {
+        _isLoading = true;
+        form.save();
+        _response.doLogin(_email, _password);
+      });
+    }
+  }
+
+ 
+    @override Widget build(BuildContext context) { 
+      _ctx = context;
         return Scaffold( 
             body: SingleChildScrollView( 
                 child: Column( 
+                  
                     crossAxisAlignment: CrossAxisAlignment.start, 
                     children: <Widget>[ 
                         const SizedBox(height: 100.0), 
@@ -60,11 +92,14 @@ class LoginPage extends StatelessWidget {
                                         bottomLeft: Radius.circular(30.0))
                                         ), 
                                         onPressed: () {
-                                           Navigator.push(context,MaterialPageRoute(builder: (context)=> AccueilPromoteur() ));
+                                           Navigator.of(context).pushNamed("/AcceuilPromoteur");
+                                          // Navigator.push(context,MaterialPageRoute(builder: (context)=> AccueilPromoteur() ));
                                         }, 
                                         child: Row( 
+                                          
                                           mainAxisSize: MainAxisSize.min, 
                                         children: <Widget>[ 
+                                          
                                           Text( "Se connecter".toUpperCase(), 
                                         style: TextStyle( fontWeight: FontWeight.bold, fontSize: 16.0), 
                                         ), 
@@ -83,8 +118,10 @@ class LoginPage extends StatelessWidget {
                                             borderRadius: BorderRadius.only( topLeft: Radius.circular(30.0), 
                                         bottomLeft: Radius.circular(30.0))
                                         ), 
-                                        onPressed: () {
-                                           Navigator.push(context,MaterialPageRoute(builder: (context)=> SignupPage() ));
+                                        onPressed: 
+                                        () {
+                                          // Navigator.of(context).pushNamed("/Signup");
+                                          // Navigator.push(context,MaterialPageRoute(builder: (context)=> SignupPage() ));
 
                                         }, 
                                         child: Row( 
@@ -135,4 +172,31 @@ class LoginPage extends StatelessWidget {
                                             ), 
                                             ); 
                                             } 
-                                            }
+
+                                            
+@override
+  void onLoginError(String error) {
+    // TODO: implement onLoginError
+    print(error);
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  @override
+  void onLoginSuccess(Utilisateurs user) async {    
+
+    if(user != null){
+       Navigator.of(context).pushNamed("/AcceuilPromoteur");
+    }else{
+      // TODO: implement onLoginSuccess
+    print("Login Gagal, Silahkan Periksa Login Anda");
+    setState(() {
+      _isLoading = false;
+    });
+    }
+    
+  }
+
+
+}
